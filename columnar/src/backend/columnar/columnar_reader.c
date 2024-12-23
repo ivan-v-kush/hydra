@@ -1927,16 +1927,8 @@ DeserializeChunkData(StripeBuffers *stripeBuffers, uint64 chunkIndex,
 								  attributeForm->attlen, attributeForm->attalign,
 								  chunkData->valueArray[columnIndex]);
 
-			if(shouldCache)
-			{
-				/* valueBuffer will be freed in cache */
-				chunkData->valueBufferArray[columnIndex] = NULL;
-			}
-			else
-			{
-				/* store current chunk's data buffer to be freed at next chunk read */
-				chunkData->valueBufferArray[columnIndex] = valueBuffer;
-			}
+			/* store current chunk's data buffer to be freed at next chunk read */
+			chunkData->valueBufferArray[columnIndex] = valueBuffer;
 		}
 		else if (columnAdded)
 		{

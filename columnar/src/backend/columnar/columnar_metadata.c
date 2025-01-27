@@ -2552,10 +2552,6 @@ ColumnarStorageUpdateIfNeeded(Relation rel, bool isUpgrade)
 		return;
 	}
 
-	/*
-	 * RelationGetSmgr was added in 15, but only backported to 13.10 and 14.07
-	 * leaving other versions requiring something like this.
-	 */
 	BlockNumber nblocks = smgrnblocks(RelationGetSmgr(rel), MAIN_FORKNUM);
 	if (nblocks < 2)
 	{
